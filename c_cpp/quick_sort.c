@@ -42,20 +42,19 @@ void swap (int s[], int i, int j)
 void quick_sort1 (int s[], int l, int r)
 {
     if(l < r) {
-        //pick mid as base
         int mid= (l+r)/2;
         int base=s[mid];
         swap(s, l, mid); 
-        int pos = l;
-//make sure all elem which is < base in the left, always swap elem and s[pos], pos means how much elem are left to be < base
-        for (int i=l; i<=r; i++) {
+        int pos = l; //start from left
+//make sure all elem which is < base in the left, always swap elem and s[pos], pos means how much elem < base 
+        for (int i=l+1; i<=r; i++) {
             if(s[i]<base) {
-                swap(s, pos, i);
                 pos++;
+                swap(s, pos, i);
             }
         }
-//put base into correct position
-        s[pos]=base;
+//put base into correct position, what pos pointer is the last data which < base (after swapped)
+       swap(s, l, pos); 
 //recursive 
         quick_sort(s, l, pos-1);
         quick_sort(s, pos+1, r);
@@ -72,7 +71,7 @@ void check(int a[], int n)
     }
 }
 
-#define NUM 100
+#define NUM 10
 
 int main(void)
 {
