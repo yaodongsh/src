@@ -1,3 +1,7 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <assert.h>
 
 void quick_sort (int *s, int l, int r)
 {
@@ -28,15 +32,62 @@ void quick_sort (int *s, int l, int r)
     }
 }
 
-#include <stdio.h>
-#include <stdlib.h>
+void swap (int s[], int i, int j)
+{
+    int temp = s[i];
+    s[i]=s[j];
+    s[j]=temp;
+}
+
+void quick_sort1 (int s[], int l, int r)
+{
+    if(l < r) {
+        //pick mid as base
+        int mid= (l+r)/2;
+        int base=s[mid];
+        swap(s, 0, mid); 
+        int pos = 0;
+//make sure all elem which is < base in the left, always swap elem and s[pos], pos means how much elem are left to be < base
+        for (int i=0; i<=r; i++) {
+            if(s[i]<base) {
+                swap(s, pos, i);
+                pos++;
+            }
+        }
+//put base into correct position
+        s[pos]=base;
+//recursive 
+        quick_sort(s, l, pos-1);
+        quick_sort(s, pos+1, r);
+    }
+} 
+
+void check(int a[], int n)
+{
+    for(int i=1; i<n; i++) {
+        for(int j=i-1; j>=0; j--) {
+             if(a[j]>a[i])
+                 assert(0);
+        }
+    }
+}
+
+#define NUM 100
 
 int main(void)
 {
-    int array[14] = {28, 67, 2, 3, 11, 49, 25, 77, 0, 21, 14, 67, 35, 5};
-    quick_sort(array, 0, 13);
-    int i;
-    for (i=0; i<14; i++)
-        printf("%d ", array[i]);
+    int a[NUM];
+    srand(time(NULL));
+    for (int i=0; i<NUM; i++) {
+        a[i] = rand() % 100;
+        printf("%d ", a[i]);
+    }
     printf("\n");
+    quick_sort1(a, 0, NUM-1);
+    for (int i=0; i<NUM; i++)
+        printf("%d ", a[i]);
+    printf("\n");
+    check(a,NUM);
+    printf("\n");
+    return 0;
 }
