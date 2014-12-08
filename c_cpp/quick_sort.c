@@ -45,10 +45,10 @@ void quick_sort1 (int s[], int l, int r)
         //pick mid as base
         int mid= (l+r)/2;
         int base=s[mid];
-        swap(s, 0, mid); 
-        int pos = 0;
+        swap(s, l, mid); 
+        int pos = l;
 //make sure all elem which is < base in the left, always swap elem and s[pos], pos means how much elem are left to be < base
-        for (int i=0; i<=r; i++) {
+        for (int i=l; i<=r; i++) {
             if(s[i]<base) {
                 swap(s, pos, i);
                 pos++;
