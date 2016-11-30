@@ -7,23 +7,17 @@
 class Calculator
 {
 public:
-    Calculator(): _done(false)
+    Calculator()
     {
-        std::cout << "Calculator Created\n";  
     }
-    bool Execute (Input& input) 
-    {
-        std::cout << "Calculator::Execute\n";
-        return !_done;
-    }
+    bool Execute (Input const & input) ;
     IStack const & GetStack() 
     {
-        _done = true;
         return _stack; 
     }
     
 private:
     IStack _stack;
-    bool _done;
+    int Calculate (int num1, int num2, int token) const;
 };
 #endif

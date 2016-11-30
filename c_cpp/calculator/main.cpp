@@ -9,7 +9,7 @@ int main()
     Calculator TheCalculator;
     bool status;
     do {
-        std::cout << "<";
+        std::cout << ">";
         Input input;
         status = TheCalculator.Execute(input);
         if(status) {

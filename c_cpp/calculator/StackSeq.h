@@ -6,16 +6,13 @@
 class StackSeq
 {
 public:
-    StackSeq (IStack const & stack) : _stack(stack), _done(false)
-    {
-        std::cout << "Stack Sequencer Created " << std::endl;
-    }
-    bool AtEnd () const {return _done;}
-    void Advance() {_done = true;}
-    int GetNum() const {return 13;}
+    StackSeq (IStack const & stack) ; 
+    bool AtEnd () const; 
+    void Advance(); 
+    int GetNum() const ;
 private:
     IStack const & _stack;
-    bool _done;
+    int _iCur;
 
 };
 #endif

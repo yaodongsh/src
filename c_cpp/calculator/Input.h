@@ -1,12 +1,20 @@
 #ifndef INPUT_H
 #define INPUT_H
 #include <iostream>
+
+const int maxBuf = 100;
+
+const int tokNumber = 1;
+const int tokError  = 2;
+
 class Input
 {
 public:
-    Input() 
-    {
-        std::cout << "Input Created" << std::endl;
-    }     
+    Input();
+    int Token() const {return _token;}
+    int Number() const;
+private:
+    int _token;
+    char _buf[maxBuf];
 };
 #endif
